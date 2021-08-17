@@ -1,4 +1,5 @@
 const socket = io()
+var audio = new Audio('tin.mp3');
 let name;
 let textarea = document.querySelector('#textarea')
 let messageArea = document.querySelector('.message__area')
@@ -24,6 +25,7 @@ function sendMessage(message) {
 
     // Send to server 
     socket.emit('message', msg)
+    
 
 }
 
@@ -38,6 +40,9 @@ function appendMessage(msg, type) {
     `
     mainDiv.innerHTML = markup
     messageArea.appendChild(mainDiv)
+    if(type=='incoming'){
+        audio.play();
+    }
 }
 
 // Recieve messages 
